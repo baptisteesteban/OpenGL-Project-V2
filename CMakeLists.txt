@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 macro(copy_shader_files)
   message(STATUS "Copying shader files")
   file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/shaders")
-  file(GLOB_RECURSE SHADER_FILES "${PROJECT_SOURCE_DIR}/shaders/*.shd")
+  file(GLOB_RECURSE SHADER_FILES "${PROJECT_SOURCE_DIR}/shaders/*.glsl")
   file(COPY ${SHADER_FILES} DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/shaders")
 endmacro(copy_shader_files)
 

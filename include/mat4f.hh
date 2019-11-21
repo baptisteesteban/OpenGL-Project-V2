@@ -23,6 +23,7 @@ public:
     friend mat4f operator*(float e, const mat4f&);
     friend mat4f operator*(const mat4f&, float e);
     friend mat4f dot(const mat4f&, const mat4f&);
+    friend mat4f transpose(const mat4f&);
 
     static mat4f identity();
 

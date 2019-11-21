@@ -97,6 +97,15 @@ mat4f dot(const mat4f& A, const mat4f& B)
     return res;
 }
 
+mat4f transpose(const mat4f& M)
+{
+    mat4f res;
+    for (std::size_t l = 0; l < 4; l++)
+        for (std::size_t c = 0; c < 4; c++)
+            res.data_[c * 4 + l] = M.data_[l * 4 + c];
+    return res;
+}
+
 mat4f
 mat4f::identity()
 {
