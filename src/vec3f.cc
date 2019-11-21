@@ -74,3 +74,9 @@ vec3f operator*(float e, const vec3f& v)
 {
     return v * e;
 }
+
+std::ostream& operator<<(std::ostream& out, const vec3f& v)
+{
+    out << "[" << v.x << " " << v.y << " " << v.z << "]";
+    return out;
+}

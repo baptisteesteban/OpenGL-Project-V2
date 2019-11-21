@@ -1,6 +1,8 @@
 #ifndef VEC3F_HH
 # define VEC3F_HH
 
+# include <ostream>
+
 struct vec3f
 {
     vec3f();
@@ -21,5 +23,7 @@ vec3f operator+(const vec3f&, const vec3f&);
 vec3f operator-(const vec3f&, const vec3f&);
 vec3f operator*(const vec3f&, float);
 vec3f operator*(float, const vec3f&);
+
+std::ostream& operator<<(std::ostream&, const vec3f& v);
 
 #endif /* VEC3F_HH */
