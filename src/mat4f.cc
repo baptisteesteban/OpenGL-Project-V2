@@ -103,3 +103,9 @@ mat4f::identity()
     mat4f res = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
     return res;
 }
+
+const float* const
+mat4f::get_pointer_data() const
+{
+    return data_.data();
+}

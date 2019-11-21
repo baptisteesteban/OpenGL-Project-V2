@@ -26,6 +26,8 @@ public:
 
     static mat4f identity();
 
+    const float* const get_pointer_data() const;
+
 private:
     std::array<float, 16> data_;
 };
