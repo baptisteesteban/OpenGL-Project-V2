@@ -1,10 +1,9 @@
 #include <iostream>
-#include "mat4f.hh"
+#include <camera.hh>
 
 int main(void)
 {
-    mat4f m = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    m.at(2, 2) = 4;
-    std::cout << m << "\n";
+    Camera v({0, 0, 0}, {1, 0, 0}, {0, 1, 0});
+    std::cout << v << "\n";
     return 0;
 }

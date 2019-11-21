@@ -2,7 +2,8 @@
 # define CAMERA_HH
 
 # include <ostream>
-# include "vec3f.hh"
+
+# include <vec3f.hh>
 
 class Camera
 {

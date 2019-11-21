@@ -1,4 +1,4 @@
-#include "camera.hh"
+#include <camera.hh>
 
 Camera::Camera(const vec3f& pos, const vec3f& x_axis, const vec3f& y_axis)
     : pos_(pos)

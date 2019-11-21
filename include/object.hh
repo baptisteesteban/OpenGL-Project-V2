@@ -3,8 +3,8 @@
 
 # include <SDL2/SDL.h>
 
-# include "camera.hh"
-# include "mat4f.hh"
+# include <camera.hh>
+# include <mat4f.hh>
 
 class Object
 {

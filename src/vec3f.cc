@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "vec3f.hh"
+#include <vec3f.hh>
 
 vec3f::vec3f()
     : x(0)
