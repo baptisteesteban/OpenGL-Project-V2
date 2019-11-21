@@ -24,6 +24,8 @@ public:
     friend mat4f operator*(const mat4f&, float e);
     friend mat4f dot(const mat4f&, const mat4f&);
 
+    static mat4f identity();
+
 private:
     std::array<float, 16> data_;
 };
