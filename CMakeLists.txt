@@ -18,9 +18,8 @@ copy_shader_files()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
-set(BINARY_NAME "fish_in_the_see")
-
 file(GLOB_RECURSE SRC "${PROJECT_SOURCE_DIR}/src/*.cc")
 include_directories(${PROJECT_SOURCE_DIR}/include)
-add_executable(${BINARY_NAME} ${SRC})
-target_link_libraries(${BINARY_NAME} OpenGL::GL SDL2 SDL2main GLEW)
+add_executable(fish_in_the_sea ${SRC})
+target_compile_features(fish_in_the_sea PUBLIC cxx_std_17)
+target_link_libraries(fish_in_the_sea OpenGL::GL SDL2 SDL2main GLEW)
