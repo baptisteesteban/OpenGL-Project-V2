@@ -1,27 +1,27 @@
 #ifndef PROGRAM_HH
-# define PROGRAM_HH
+#define PROGRAM_HH
 
-# include <GL/glew.h>
+#include <GL/glew.h>
 
-# include <string>
+#include <string>
 
-# include <mat4f.hh>
+#include <mat4f.hh>
 
 class Program
 {
 public:
-    Program() = delete;
-    Program(const std::string& vertex_shd_filename,
-            const std::string& fragment_shd_filename,
-            const std::string& geometry_shd_filename = "");
-    ~Program();
+  Program() = delete;
+  Program(const std::string& vertex_shd_filename,
+          const std::string& fragment_shd_filename,
+          const std::string& geometry_shd_filename = "");
+  ~Program();
 
-    void use() const noexcept;
+  void use() const noexcept;
 
-    void setUniformMatrix(const std::string&, const mat4f&);
+  void setUniformMatrix(const std::string&, const mat4f&);
 
 private:
-    GLuint program_;
+  GLuint program_;
 };
 
 #endif /* !PROGRAM_HH */

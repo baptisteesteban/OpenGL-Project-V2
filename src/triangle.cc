@@ -1,9 +1,10 @@
-#include <triangle.hh>
 #include <look_at.hh>
+#include <triangle.hh>
 
 Triangle::Triangle(const std::initializer_list<GLfloat>& points)
   : points_(points)
-  , program_("shaders/triangle_vertex.glsl", "shaders/triangle_fragment.glsl", "")
+  , program_("shaders/triangle_vertex.glsl", "shaders/triangle_fragment.glsl",
+             "")
 {
   glGenVertexArrays(1, &vao_);
   glBindVertexArray(vao_);
@@ -11,15 +12,16 @@ Triangle::Triangle(const std::initializer_list<GLfloat>& points)
   GLuint vbo;
   glGenBuffers(1, &vbo);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, points_.size() * sizeof(GLfloat), points_.data(), GL_STATIC_DRAW);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)0);
+  glBufferData(GL_ARRAY_BUFFER, points_.size() * sizeof(GLfloat),
+               points_.data(), GL_STATIC_DRAW);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat),
+                        (void*)0);
   glEnableVertexAttribArray(0);
 
   glBindVertexArray(0);
 }
 
-void
-Triangle::draw(const Camera& cam, const mat4f& proj)
+void Triangle::draw(const Camera& cam, const mat4f& proj)
 {
 
   program_.use();
@@ -30,6 +32,7 @@ Triangle::draw(const Camera& cam, const mat4f& proj)
   glBindVertexArray(0);
 }
 
-void
-Triangle::update(const SDL_Event& e)
-{(void)e;}
+void Triangle::update(const SDL_Event& e)
+{
+  (void)e;
+}

@@ -6,10 +6,10 @@
 
 #include <config.hh>
 #include <scene.hh>
-//#include <triangle.hh>
+#include <triangle.hh>
 
-#include <look_at.hh>
 #include <frustum.hh>
+#include <look_at.hh>
 #include <mat4f.hh>
 #include <vec3f.hh>
 
@@ -32,9 +32,10 @@ void init_gl()
   glPointSize(100);
 }
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-  SDL_Window *window = SDL_CreateWindow(wtitle, 0, 0, wwidth, wheight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+  SDL_Window* window = SDL_CreateWindow(wtitle, 0, 0, wwidth, wheight,
+                                        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
   if (!window)
   {
     std::cerr << "Window creation: error\n";
@@ -50,23 +51,24 @@ int main(int argc, char **argv)
   if (!init_glew())
     return 1;
   init_gl();
-  Camera cam(vec3f{0.f, 0.f, 1.0f}, vec3f{1.0f, 0.f, 0.f}, vec3f{0.f, 1.f, 0.f});
-  Scene s(cam);
+  Camera cam(vec3f{0.f, 0.f, 1.0f}, vec3f{1.0f, 0.f, 0.f},
+             vec3f{0.f, 1.f, 0.f});
+  Scene  s(cam);
 
-  auto points = {0.0f, 0.0f, 0.0f};                                                                                                                                        
+  auto points = {0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+  s.addObject(std::make_shared<Triangle>(points));
 
-  auto proj = frustum(-1, 1, -1, 1, 0.1, 10);
+  auto proj       = frustum(-1, 1, -1, 1, 0.1, 10);
   auto model_view = lookAt(cam);
 
   bool running = true;
-  while(running)
+  while (running)
   {
     SDL_Event event;
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT)
-        running = false;
-
+      running = false;
 
     s.update(event);
     s.draw();

@@ -1,18 +1,18 @@
 #ifndef VEC3F_HH
-# define VEC3F_HH
+#define VEC3F_HH
 
-# include <ostream>
+#include <ostream>
 
 struct vec3f
 {
-    vec3f();
-    vec3f(float _x, float _y, float _z);
-    vec3f(const vec3f&);
-    ~vec3f();
-    vec3f& operator=(const vec3f&);
-    float x;
-    float y;
-    float z;
+  vec3f();
+  vec3f(float _x, float _y, float _z);
+  vec3f(const vec3f&);
+  ~vec3f();
+  vec3f& operator=(const vec3f&);
+  float  x;
+  float  y;
+  float  z;
 };
 
 float norm(const vec3f&);

@@ -1,11 +1,11 @@
 #ifndef SCENE_HH
-# define SCENE_HH
+#define SCENE_HH
 
-# include <object.hh>
-# include <camera.hh>
+#include <camera.hh>
+#include <object.hh>
 
-# include <memory>
-# include <vector>
+#include <memory>
+#include <vector>
 
 class Scene
 {
@@ -16,10 +16,10 @@ public:
   void update(const SDL_Event& e);
 
 private:
-  void updateCamera(const SDL_Event& e);
+  void                                 updateCamera(const SDL_Event& e);
   std::vector<std::shared_ptr<Object>> objs_;
-  Camera cam_;
-  mat4f projection_;
+  Camera                               cam_;
+  mat4f                                projection_;
 };
 
 #endif /* !SCENE_HH */

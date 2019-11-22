@@ -1,12 +1,12 @@
 #ifndef TRIANGLE_HH
-# define TRIANGLE_HH
+#define TRIANGLE_HH
 
-# include <program.hh>
-# include <object.hh>
+#include <object.hh>
+#include <program.hh>
 
-# include <GL/glew.h>
-# include <initializer_list>
-# include <vector>
+#include <GL/glew.h>
+#include <initializer_list>
+#include <vector>
 
 class Triangle : public Object
 {
@@ -19,8 +19,8 @@ public:
 
 private:
   std::vector<GLfloat> points_;
-  Program program_;
-  GLuint vao_;
+  Program              program_;
+  GLuint               vao_;
 };
 
 #endif /* !TRIANGLE_HH */
