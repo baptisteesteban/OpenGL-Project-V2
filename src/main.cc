@@ -5,6 +5,7 @@
 #include <SDL2/SDL_opengl.h>
 
 #include <config.hh>
+#include <fish.hh>
 #include <scene.hh>
 #include <triangle.hh>
 
@@ -29,7 +30,7 @@ void init_gl()
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_POINT_SIZE);
-  glPointSize(100);
+  glPointSize(10);
 }
 
 int main(int argc, char** argv)
@@ -55,8 +56,8 @@ int main(int argc, char** argv)
              vec3f{0.f, 1.f, 0.f});
   Scene  s(cam);
 
-  auto points = {0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};
-  s.addObject(std::make_shared<Triangle>(points));
+  auto points = {0.0f, 0.0f, 0.0f};
+  s.addObject(std::make_shared<Fish>(points));
 
   auto proj       = frustum(-1, 1, -1, 1, 0.1, 10);
   auto model_view = lookAt(cam);
