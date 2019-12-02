@@ -5,7 +5,8 @@
 
 Fish::Fish(std::initializer_list<float> points)
   : points_(points)
-  , program_("shaders/fish_vertex.glsl", "shaders/fish_fragment.glsl")
+  , program_("shaders/fish_vertex.glsl", "shaders/fish_fragment.glsl",
+             "shaders/fish_geometry.glsl")
   , cs_("shaders/compute_fish_movement.glsl")
 {
   if (points.size() % 3 != 0)
