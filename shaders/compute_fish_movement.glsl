@@ -8,6 +8,7 @@ struct element
 };
 
 uniform uint size;
+uniform uint fps;
 
 layout(local_size_x=1) in;
 
@@ -15,8 +16,6 @@ layout(std430, binding = 0) buffer position_buffer
 {
     element elem[];
 };
-
-uniform uint fps;
 
 float norm(vec4 v) {
     return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
@@ -30,7 +29,7 @@ vec4 force(vec4 s, vec4 x, float alpha1, float alpha2) {
 void update(int k)
 {
     // Init
-    const float dt = 0.05;
+    const float dt = float(fps) / 200;
     elem[k].f = vec4(0, 0, 0, 0);
 
     // Loop with fishes
