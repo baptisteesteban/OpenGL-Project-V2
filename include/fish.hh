@@ -33,6 +33,7 @@ private:
   std::vector<details::fish_elem> elem_;
   Program                         program_;
   ComputeShader                   cs_;
+  GLuint                          old_time_;
   GLuint                          buffer_;
   GLuint                          vao_;
 };
