@@ -41,5 +41,6 @@ void Fish::update(const SDL_Event& e)
   auto fps      = new_time - old_time_;
   cs_.use(elem_.size(), 1, 1);
   cs_.setUniformUnsigned("fps", fps);
+  cs_.setUniformUnsigned("size", elem_.size());
   old_time_ = new_time;
 }

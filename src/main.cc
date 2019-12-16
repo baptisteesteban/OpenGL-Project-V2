@@ -31,7 +31,7 @@ void init_gl()
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_POINT_SIZE);
-  glPointSize(10);
+  glPointSize(3);
 }
 
 void initialize_fish(std::vector<details::fish_elem>& elem)
@@ -64,19 +64,38 @@ int main(int argc, char** argv)
   if (!init_glew())
     return 1;
   init_gl();
-  Camera cam(vec3f{0.f, 0.f, 1.0f}, vec3f{1.0f, 0.f, 0.f},
+  Camera cam(vec3f{0.f, 0.f, 2.0f}, vec3f{1.0f, 0.f, 0.f},
              vec3f{0.f, 1.f, 0.f});
   Scene  s(cam);
 
   details::fish_elem e1;
   details::fish_elem e2;
-  float              p1[] = {0.0f, 0.0f, 0.0f, 1.0f};
-  float              p2[] = {0.5f, 0.0f, 0.0f, 1.0f};
+  details::fish_elem e3;
+  details::fish_elem e4;
+  details::fish_elem e5;
+  details::fish_elem e6;
+
+  float p1[] = {0.0f, 0.0f, 0.1f, 1.0f};
+  float p2[] = {0.3f, 0.0f, 0.3f, 1.0f};
+  float p3[] = {0.5f, -0.2f, 0.4f, 1.0f};
+  float p4[] = {-0.5f, 0.2f, -0.7f, 1.0f};
+  float p5[] = {-0.2f, -0.6f, 0.1f, 1.0f};
+  float p6[] = {-0.1f, 0.5f, -0.8f, 1.0f};
+
   std::copy(p1, p1 + 4, e1.p);
   std::copy(p2, p2 + 4, e2.p);
+  std::copy(p3, p3 + 4, e3.p);
+  std::copy(p4, p4 + 4, e4.p);
+  std::copy(p5, p5 + 4, e5.p);
+  std::copy(p6, p6 + 4, e6.p);
+
   std::vector<details::fish_elem> elements;
   elements.push_back(e1);
   elements.push_back(e2);
+  elements.push_back(e3);
+  elements.push_back(e4);
+  elements.push_back(e5);
+  elements.push_back(e6);
   initialize_fish(elements);
   s.addObject(std::make_shared<Fish>(elements));
 
