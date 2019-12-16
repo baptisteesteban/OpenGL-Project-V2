@@ -34,6 +34,17 @@ void init_gl()
   glPointSize(10);
 }
 
+void initialize_fish(std::vector<details::fish_elem>& elem)
+{
+  float f[4] = {0.5f, 0.f, 0.f, 0.f};
+  float v[4] = {0.f, 0.7f, 0.f, 0.f};
+  for (std::size_t i = 0; i < elem.size(); i++)
+  {
+    std::copy(f, f + 4, elem[i].f);
+    std::copy(v, v + 4, elem[i].v);
+  }
+}
+
 int main(int argc, char** argv)
 {
   SDL_Window* window = SDL_CreateWindow(wtitle, 0, 0, wwidth, wheight,
@@ -66,6 +77,7 @@ int main(int argc, char** argv)
   std::vector<details::fish_elem> elements;
   elements.push_back(e1);
   elements.push_back(e2);
+  initialize_fish(elements);
   s.addObject(std::make_shared<Fish>(elements));
 
   auto proj       = frustum(-1, 1, -1, 1, 0.1, 10);
