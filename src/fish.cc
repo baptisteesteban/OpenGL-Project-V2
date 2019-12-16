@@ -3,22 +3,19 @@
 
 #include <iostream>
 
-Fish::Fish(std::initializer_list<float> points)
-  : points_(points)
+Fish::Fish(const std::vector<details::fish_elem>& elem)
+  : elem_(elem)
   , program_("shaders/fish_vertex.glsl", "shaders/fish_fragment.glsl")
   , cs_("shaders/compute_fish_movement.glsl")
 {
-  if (points.size() % 4 != 0)
-    throw std::invalid_argument(
-        "point argument should be an array of size 4 * n");
   glGenVertexArrays(1, &vao_);
   glGenBuffers(1, &buffer_);
 
   glBindVertexArray(vao_);
   glBindBuffer(GL_ARRAY_BUFFER, buffer_);
-  glBufferData(GL_ARRAY_BUFFER, points_.size() * sizeof(float), points_.data(),
-               GL_DYNAMIC_DRAW);
-  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat),
+  glBufferData(GL_ARRAY_BUFFER, elem_.size() * sizeof(details::fish_elem),
+               elem_.data(), GL_DYNAMIC_DRAW);
+  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(details::fish_elem),
                         (void*)0);
   glEnableVertexAttribArray(0);
   glBindVertexArray(0);
@@ -33,11 +30,11 @@ void Fish::draw(const Camera& cam, const mat4f& proj)
   program_.setUniformMatrix("projection", transpose(proj));
 
   glBindVertexArray(vao_);
-  glDrawArrays(GL_POINTS, 0, points_.size() / 4);
+  glDrawArrays(GL_POINTS, 0, elem_.size());
   glBindVertexArray(0);
 }
 
 void Fish::update(const SDL_Event& e)
 {
-  cs_.use(points_.size() / 4, 1, 1);
+  cs_.use(elem_.size(), 1, 1);
 }

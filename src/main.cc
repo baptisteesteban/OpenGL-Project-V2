@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 
 #include <GL/glew.h>
@@ -56,8 +57,16 @@ int main(int argc, char** argv)
              vec3f{0.f, 1.f, 0.f});
   Scene  s(cam);
 
-  auto points = {0.0f, 0.0f, 0.0f, 1.0f, 0.5f, 0.f, 0.f, 1.0f};
-  s.addObject(std::make_shared<Fish>(points));
+  details::fish_elem e1;
+  details::fish_elem e2;
+  float              p1[] = {0.0f, 0.0f, 0.0f, 1.0f};
+  float              p2[] = {0.5f, 0.0f, 0.0f, 1.0f};
+  std::copy(p1, p1 + 4, e1.p);
+  std::copy(p2, p2 + 4, e2.p);
+  std::vector<details::fish_elem> elements;
+  elements.push_back(e1);
+  elements.push_back(e2);
+  s.addObject(std::make_shared<Fish>(elements));
 
   auto proj       = frustum(-1, 1, -1, 1, 0.1, 10);
   auto model_view = lookAt(cam);
