@@ -9,12 +9,12 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-class CameraDialog
+class Dialog
 {
 public:
-  CameraDialog(SDL_GLContext context, SDL_Window* window);
+  Dialog(SDL_GLContext context, SDL_Window* window);
   void render(const Camera& camera);
-  ~CameraDialog();
+  ~Dialog();
 
 private:
   SDL_Window* window_;

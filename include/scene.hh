@@ -2,9 +2,8 @@
 #define SCENE_HH
 
 #include <camera.hh>
+#include <dialog.hh>
 #include <object.hh>
-
-#include <camera_dialog.hh>
 
 #include <memory>
 #include <vector>
@@ -22,7 +21,7 @@ private:
   std::vector<std::shared_ptr<Object>> objs_;
   Camera                               cam_;
   mat4f                                projection_;
-  CameraDialog                         dialog_;
+  Dialog                               dialog_;
 };
 
 #endif /* !SCENE_HH */
