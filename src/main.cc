@@ -66,7 +66,7 @@ int main(int argc, char** argv)
   init_gl();
   Camera cam(vec3f{0.f, 0.f, 1.0f}, vec3f{1.0f, 0.f, 0.f},
              vec3f{0.f, 1.f, 0.f});
-  Scene  s(cam);
+  Scene  s(cam, context, window);
 
   details::fish_elem e1;
   details::fish_elem e2;

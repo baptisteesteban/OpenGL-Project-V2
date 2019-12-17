@@ -17,9 +17,14 @@ copy_shader_files()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-
+		    
 file(GLOB_RECURSE SRC "${PROJECT_SOURCE_DIR}/src/*.cc")
-include_directories(${PROJECT_SOURCE_DIR}/include)
-add_executable(fish_in_the_sea ${SRC})
+
+set(IMGUI_PATH "${PROJECT_SOURCE_DIR}/Externals/imgui")
+file(GLOB_RECURSE IMGUI_SRC "${IMGUI_PATH}/*.cpp")
+
+include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/Externals)
+
+add_executable(fish_in_the_sea ${SRC} ${IMGUI_SRC})
 target_compile_features(fish_in_the_sea PUBLIC cxx_std_17)
 target_link_libraries(fish_in_the_sea OpenGL::GL SDL2 SDL2main GLEW)

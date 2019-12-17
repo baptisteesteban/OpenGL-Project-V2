@@ -7,10 +7,11 @@
 
 #include <iostream>
 
-Scene::Scene(const Camera& cam)
+Scene::Scene(const Camera& cam, SDL_GLContext context, SDL_Window* window)
   : objs_(std::vector<std::shared_ptr<Object>>())
   , cam_(cam)
   , projection_(frustum(-1.f, 1.f, -1.f, 1.f, 0.1f, 10.f))
+  , dialog_(context, window)
 {
 }
 
@@ -25,6 +26,7 @@ void Scene::draw()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   for (auto obj : objs_)
     obj->draw(cam_, projection_);
+  dialog_.render(cam_);
   glFlush();
 }
 
