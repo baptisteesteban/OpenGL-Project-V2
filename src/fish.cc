@@ -42,6 +42,6 @@ void Fish::update(const SDL_Event& e)
   cs_.use(elem_.size(), 1, 1);
   cs_.setUniformUnsigned("fps", fps);
   cs_.setUniformUnsigned("size", elem_.size());
+  std::cout << elem_.size() << std::endl;
   old_time_ = new_time;
-  std::cout << fps << std::endl;
 }

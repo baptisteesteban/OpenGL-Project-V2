@@ -10,6 +10,9 @@ struct element
 uniform uint size;
 uniform uint fps;
 
+uint nb_sharks = 2;
+uint nb_fishes = size - nb_sharks;
+
 layout(local_size_x=1) in;
 
 layout(std430, binding = 0) buffer position_buffer
@@ -18,7 +21,7 @@ layout(std430, binding = 0) buffer position_buffer
 };
 
 float norm(vec4 v) {
-    return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
+    return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
 vec4 force(vec4 s, vec4 x, float alpha1, float alpha2) {
@@ -29,34 +32,32 @@ vec4 force(vec4 s, vec4 x, float alpha1, float alpha2) {
 void update(int k)
 {
     // Init
-    const float dt = float(fps) / 200;
+    const float dt = float(fps) / 400;
     elem[k].f = vec4(0, 0, 0, 0);
 
     // Loop with fishes
-    if (k < 5) {
-        for (int j = 0; j < size; ++j) {
-            if (k != j && j != 5) {
+    if (k < nb_fishes) {
+        for (uint j = 0; j < nb_fishes; ++j) {
+            if (k != j) {
                 if (norm(elem[k].p - elem[j].p) < 0.5) {
                     elem[k].f += force(elem[j].p, elem[k].p, 1, 0.05);
                     elem[k].v -= 0.5 * (elem[k].v - elem[j].v);
                 }
             }
-            if (j == 5) {
-                if (norm(elem[k].p - elem[j].p) < 1) {
-                    elem[k].f += force(elem[j].p, elem[k].p, 0, 0.3);
-                }
+        }
+        for (uint j = nb_fishes; j < size; ++j) {
+            if (norm(elem[k].p - elem[j].p) < 1) {
+                elem[k].f += force(elem[j].p, elem[k].p, 0, 0.3);
             }
         }
-    }
-
-    if (k == 5) {
-        for (int j = 0; j < size; ++j) {
-            if (k != j) {
-                if (norm(elem[k].p - elem[j].p) < 1) {
-                    elem[k].f += force(elem[j].p, elem[k].p, 2, 0);
-                }
+    } else {
+        for (uint j = 0; j < nb_fishes; ++j) {
+            if (norm(elem[k].p - elem[j].p) < 1) {
+                elem[k].f += force(elem[j].p, elem[k].p, 2, 0);
             }
-            if (j == 5) {
+        }
+        for (uint j = nb_fishes; j < size; ++j) {
+            if (k != j) {
                 if (norm(elem[k].p - elem[j].p) < 1) {
                     elem[k].f += force(elem[j].p, elem[k].p, 0, 0.5);
                 }
@@ -65,8 +66,8 @@ void update(int k)
     }
 
     // Constraints fishes
-    if (k < 5) {
-        for (int i = 0; i < 3; ++i) {
+    if (k < nb_fishes) {
+        for (uint i = 0; i < 3; ++i) {
             if (elem[k].v[i] < -1)
             elem[k].v[i] = -1;
             if (elem[k].v[i] > 1)
@@ -78,7 +79,7 @@ void update(int k)
         }
     }
     else {
-        for (int i = 0; i < 3; ++i) {
+        for (uint i = 0; i < 3; ++i) {
             if (elem[k].v[i] < -2)
             elem[k].v[i] = -2;
             if (elem[k].v[i] > 2)
