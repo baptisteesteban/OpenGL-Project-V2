@@ -39,32 +39,33 @@ void Scene::update(const SDL_Event& e)
 
 void Scene::updateCamera(const SDL_Event& e)
 {
+  constexpr float speed = 0.1f;
   if (e.type == SDL_KEYDOWN)
   {
     switch (e.key.keysym.sym)
     {
     case SDLK_LEFT:
-      cam_.pos_set(cam_.pos_get() + vec3f{-0.1f, 0.f, 0.f});
+      cam_.pos_set(cam_.pos_get() - speed * cam_.x_axis_get());
       break;
 
     case SDLK_RIGHT:
-      cam_.pos_set(cam_.pos_get() + vec3f{0.1f, 0.f, 0.f});
+      cam_.pos_set(cam_.pos_get() + speed * cam_.x_axis_get());
       break;
 
     case SDLK_UP:
-      cam_.pos_set(cam_.pos_get() + vec3f{0.f, 0.1f, 0.f});
+      cam_.pos_set(cam_.pos_get() + speed * cam_.y_axis_get());
       break;
 
     case SDLK_DOWN:
-      cam_.pos_set(cam_.pos_get() + vec3f{0.f, -0.1f, 0.f});
+      cam_.pos_set(cam_.pos_get() - speed * cam_.y_axis_get());
       break;
 
     case SDLK_z:
-      cam_.pos_set(cam_.pos_get() + vec3f{0.f, 0.f, -0.01f});
+      cam_.pos_set(cam_.pos_get() - speed * cam_.z_axis_get());
       break;
 
     case SDLK_s:
-      cam_.pos_set(cam_.pos_get() + vec3f{0.f, 0.f, 0.01f});
+      cam_.pos_set(cam_.pos_get() + speed * cam_.z_axis_get());
       break;
 
     default:
