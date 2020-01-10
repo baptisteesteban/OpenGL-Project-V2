@@ -72,4 +72,11 @@ void Scene::updateCamera(const SDL_Event& e)
       break;
     }
   }
+
+  if (e.type == SDL_MOUSEMOTION && e.button.button == SDL_BUTTON_LEFT)
+  {
+    const auto& x = e.motion.x;
+    const auto& y = e.motion.y;
+    std::cout << "(" << x << ", " << y << ")\n";
+  }
 }
