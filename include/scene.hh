@@ -22,6 +22,11 @@ private:
   Camera                               cam_;
   mat4f                                projection_;
   Dialog                               dialog_;
+
+  // For camera rotation
+  int  prev_x_;
+  int  prev_y_;
+  bool has_prev_;
 };
 
 #endif /* !SCENE_HH */

@@ -12,6 +12,9 @@ Scene::Scene(const Camera& cam, SDL_GLContext context, SDL_Window* window)
   , cam_(cam)
   , projection_(frustum(-1.f, 1.f, -1.f, 1.f, 0.1f, 10.f))
   , dialog_(context, window)
+  , prev_x_(0)
+  , prev_y_(0)
+  , has_prev_(false)
 {
 }
 
@@ -77,6 +80,32 @@ void Scene::updateCamera(const SDL_Event& e)
   {
     const auto& x = e.motion.x;
     const auto& y = e.motion.y;
-    std::cout << "(" << x << ", " << y << ")\n";
+
+    if (!has_prev_)
+    {
+      prev_x_   = x;
+      prev_y_   = y;
+      has_prev_ = true;
+    }
+    else
+    {
+      const auto dx = x - prev_x_;
+      const auto dy = y - prev_y_;
+      prev_x_       = x;
+      prev_y_       = y;
+      // FIXME: ROTATION
+    }
+  }
+
+  if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT)
+    has_prev_ = false;
+
+  if (e.type == SDL_MOUSEWHEEL)
+  {
+    if (e.wheel.y > 0)
+      std::cout << "UPW\n";
+
+    if (e.wheel.y < 0)
+      std::cout << "DOWNW\n";
   }
 }
