@@ -5,7 +5,7 @@
 
 Fish::Fish(const std::vector<details::fish_elem>& elem)
   : elem_(elem)
-  , program_("shaders/fish_vertex.glsl", "shaders/fish_fragment.glsl")
+  , program_("shaders/fish_vertex.glsl", "shaders/fish_fragment.glsl", "shaders/fish_geometry.glsl")
   , cs_("shaders/compute_fish_movement.glsl")
   , old_time_(0)
 {
