@@ -73,14 +73,14 @@ int main(int argc, char** argv)
   details::fish_elem e4{};
   details::fish_elem e5{};
   details::fish_elem e6{};
-  details::fish_elem e7{};
+/*  details::fish_elem e7{};
   details::fish_elem e8{};
   details::fish_elem e9{};
   details::fish_elem e10{};
   details::fish_elem e11{};
   details::fish_elem e12{};
   details::fish_elem e13{};
-  details::fish_elem e14{};
+  details::fish_elem e14{};*/
 
   float p1[] = {1.0f, 0.0f, 1.0f, 1.0f};
   float p2[] = {2.3f, 1.0f, 0.7f, 1.0f};
@@ -88,14 +88,14 @@ int main(int argc, char** argv)
   float p4[] = {-0.5f, 2.2f, -2.0f, 1.0f};
   float p5[] = {-0.2f, -2.6f, 1.2f, 1.0f};
   float p6[] = {-1.1f, 0.5f, -0.3f, 1.0f};
-  float p7[] = {-0.4f, -1.5f, -0.8f, 1.0f};
+/*  float p7[] = {-0.4f, -1.5f, -0.8f, 1.0f};
   float p8[] = {-2.1f, 0.2f, 0.1f, 1.0f};
   float p9[] = {0.1f, -0.5f, 0.0f, 1.0f};
   float p10[] = {1.8f, -2.8f, 2.2f, 1.0f};
   float p11[] = {-0.1f, 0.5f, 1.3f, 1.0f};
   float p12[] = {0.7f, -2.9f, -1.0f, 1.0f};
   float p13[] = {-0.1f, 0.5f, -0.6f, 1.0f};
-  float p14[] = {2.3f, -1.0f, 1.0f, 1.0f};
+  float p14[] = {2.3f, -1.0f, 1.0f, 1.0f};*/
 
   std::copy(p1, p1 + 4, e1.p);
   std::copy(p2, p2 + 4, e2.p);
@@ -103,14 +103,14 @@ int main(int argc, char** argv)
   std::copy(p4, p4 + 4, e4.p);
   std::copy(p5, p5 + 4, e5.p);
   std::copy(p6, p6 + 4, e6.p);
-  std::copy(p7, p7 + 4, e7.p);
+/*  std::copy(p7, p7 + 4, e7.p);
   std::copy(p8, p8 + 4, e8.p);
   std::copy(p9, p9 + 4, e9.p);
   std::copy(p10, p10 + 4, e10.p);
   std::copy(p11, p11 + 4, e11.p);
   std::copy(p12, p12 + 4, e12.p);
   std::copy(p13, p13 + 4, e13.p);
-  std::copy(p14, p14 + 4, e14.p);
+  std::copy(p14, p14 + 4, e14.p);*/
 
   std::vector<details::fish_elem> elements;
   elements.push_back(e1);
@@ -119,14 +119,14 @@ int main(int argc, char** argv)
   elements.push_back(e4);
   elements.push_back(e5);
   elements.push_back(e6);
-  elements.push_back(e7);
+/*  elements.push_back(e7);
   elements.push_back(e8);
   elements.push_back(e9);
   elements.push_back(e10);
   elements.push_back(e11);
   elements.push_back(e12);
   elements.push_back(e13);
-  elements.push_back(e14);
+  elements.push_back(e14);*/
 
   initialize_fish(elements);
   s.addObject(std::make_shared<Fish>(elements));
