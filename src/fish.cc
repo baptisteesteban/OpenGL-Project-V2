@@ -5,7 +5,7 @@
 
 Fish::Fish(const std::vector<details::fish_elem>& elem)
   : elem_(elem)
-  , program_("shaders/fish_vertex.glsl", "shaders/fish_fragment.glsl")
+  , program_("shaders/fish_vertex.glsl", "shaders/fish_fragment.glsl", "shaders/fish_geometry.glsl")
   , cs_("shaders/compute_fish_movement.glsl")
   , old_time_(0)
 {
@@ -41,5 +41,6 @@ void Fish::update(const SDL_Event& e)
   auto fps      = new_time - old_time_;
   cs_.use(elem_.size(), 1, 1);
   cs_.setUniformUnsigned("fps", fps);
+  cs_.setUniformUnsigned("size", elem_.size());
   old_time_ = new_time;
 }
